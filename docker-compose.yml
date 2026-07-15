@@ -1,0 +1,17 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: tiendasmass-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: tiendasmass_root
+      MYSQL_DATABASE: tiendas_mass
+      MYSQL_USER: tiendasmass
+      MYSQL_PASSWORD: tiendasmass_pw
+    ports:
+      - "3306:3306"
+    volumes:
+      - tiendasmass-mysql-data:/var/lib/mysql
+
+volumes:
+  tiendasmass-mysql-data:

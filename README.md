@@ -33,13 +33,30 @@ Se configura en `Theme.aplicarLookAndFeel()`.
 
 ## Cómo compilar y ejecutar
 
+Con **Maven** (recomendado; no requiere tener Maven instalado, el repo incluye el
+Maven Wrapper):
+
+```bat
+mvnw.cmd clean package   REM compila, corre los tests y genera target\tiendas-mass.jar
+java -jar target\tiendas-mass.jar
 ```
+
+Alternativa sin Maven (scripts originales del proyecto, se conservan):
+
+```bat
 build.bat   REM compila el código y genera tiendas-mass.jar
 run.bat     REM ejecuta el sistema
 ```
 
 Ambos scripts detectan automáticamente un JDK instalado en el PATH o en la ruta
 estándar de Eclipse Temurin 17 en Windows.
+
+## Despliegue contra un servidor (Taller de Despliegue)
+
+Ver [`DEPLOYMENT.md`](DEPLOYMENT.md): build con Maven, configuración de un servidor
+MySQL real (`docker-compose.yml` + `run-server.bat`) como alternativa a SQLite local
+sin cambiar código (solo variables de entorno `DB_URL`/`DB_USER`/`DB_PASSWORD`), y
+las observaciones levantadas durante el despliegue (y cómo se resolvieron).
 
 ## Pruebas automatizadas (Taller de Testing)
 

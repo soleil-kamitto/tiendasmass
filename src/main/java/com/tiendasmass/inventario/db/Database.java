@@ -7,12 +7,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/** Acceso a la base de datos SQLite embebida (vía JDBC) y creación del esquema inicial. */
+/**
+ * Acceso a la base de datos vía JDBC y creación del esquema inicial.
+ *
+ * <p>Por defecto usa el SQLite embebido local (Alternativa 1, ver README.md). Para el
+ * Taller de Despliegue, si se definen las variables de entorno {@code DB_URL} (y
+ * opcionalmente {@code DB_USER}/{@code DB_PASSWORD}) al arrancar la aplicación, se
+ * conecta en su lugar a un servidor MySQL (ver DEPLOYMENT.md) sin cambiar una sola
+ * línea de código — solo configuración del entorno, tal como se documentó desde el
+ * principio en el README como la forma prevista de migrar de SQLite a un motor
+ * cliente-servidor.</p>
+ */
 public final class Database {
 
     private static final String DEFAULT_DB_URL = "jdbc:sqlite:tiendas_mass.db";
 
-    private static String dbUrl = DEFAULT_DB_URL;
+    private static String dbUrl = envODefault("DB_URL", DEFAULT_DB_URL);
+    private static String dbUser = System.getenv("DB_USER");
+    private static String dbPassword = System.getenv("DB_PASSWORD");
+
+    private static String envODefault(String variable, String porDefecto) {
+        String valor = System.getenv(variable);
+        return (valor == null || valor.isBlank()) ? porDefecto : valor;
+    }
 
     private Database() {
     }
@@ -20,22 +37,47 @@ public final class Database {
     /** Permite redirigir la conexión a otra base (usado por los tests para no tocar tiendas_mass.db). */
     public static void setDbUrl(String url) {
         dbUrl = url;
+        dbUser = null;
+        dbPassword = null;
     }
 
     public static void resetDbUrl() {
         dbUrl = DEFAULT_DB_URL;
+        dbUser = System.getenv("DB_USER");
+        dbPassword = System.getenv("DB_PASSWORD");
+    }
+
+    private static boolean esMySql() {
+        return dbUrl.startsWith("jdbc:mysql:");
     }
 
     public static Connection getConnection() throws SQLException {
-        Connection conn = DriverManager.getConnection(dbUrl);
-        try (Statement st = conn.createStatement()) {
-            st.execute("PRAGMA foreign_keys = ON");
+        Connection conn = (dbUser != null)
+                ? DriverManager.getConnection(dbUrl, dbUser, dbPassword)
+                : DriverManager.getConnection(dbUrl);
+        if (!esMySql()) {
+            try (Statement st = conn.createStatement()) {
+                st.execute("PRAGMA foreign_keys = ON"); // no soportado por MySQL
+            }
         }
         return conn;
     }
 
     public static void initSchema() {
-        try (Connection conn = getConnection(); Statement st = conn.createStatement()) {
+        try (Connection conn = getConnection()) {
+            if (esMySql()) {
+                crearEsquemaMySql(conn);
+            } else {
+                crearEsquemaSqlite(conn);
+            }
+            seedData(conn);
+        } catch (SQLException e) {
+            throw new RuntimeException("No se pudo inicializar la base de datos", e);
+        }
+    }
+
+    private static void crearEsquemaSqlite(Connection conn) throws SQLException {
+        try (Statement st = conn.createStatement()) {
             st.executeUpdate("""
                 CREATE TABLE IF NOT EXISTS usuarios (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -108,10 +150,91 @@ public final class Database {
                     usuario_id INTEGER NOT NULL REFERENCES usuarios(id)
                 )
             """);
+        }
+    }
 
-            seedData(conn);
-        } catch (SQLException e) {
-            throw new RuntimeException("No se pudo inicializar la base de datos", e);
+    /** Mismo esquema que crearEsquemaSqlite, en dialecto MySQL (ver DEPLOYMENT.md). */
+    private static void crearEsquemaMySql(Connection conn) throws SQLException {
+        try (Statement st = conn.createStatement()) {
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS usuarios (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    nombre VARCHAR(150) NOT NULL,
+                    usuario VARCHAR(60) NOT NULL UNIQUE,
+                    password_hash VARCHAR(255) NOT NULL,
+                    rol VARCHAR(20) NOT NULL,
+                    activo TINYINT NOT NULL DEFAULT 1
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS productos (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    codigo VARCHAR(30) NOT NULL UNIQUE,
+                    nombre VARCHAR(150) NOT NULL,
+                    categoria VARCHAR(80),
+                    precio DECIMAL(12,2) NOT NULL,
+                    stock INT NOT NULL DEFAULT 0,
+                    stock_minimo INT NOT NULL DEFAULT 5
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS clientes (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    nombre VARCHAR(150) NOT NULL,
+                    documento VARCHAR(30)
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS ventas (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    fecha VARCHAR(40) NOT NULL,
+                    cliente_id INT NOT NULL,
+                    usuario_id INT NOT NULL,
+                    total DECIMAL(12,2) NOT NULL,
+                    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+                    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS detalle_venta (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    venta_id INT NOT NULL,
+                    producto_id INT NOT NULL,
+                    cantidad INT NOT NULL,
+                    precio_unitario DECIMAL(12,2) NOT NULL,
+                    FOREIGN KEY (venta_id) REFERENCES ventas(id),
+                    FOREIGN KEY (producto_id) REFERENCES productos(id)
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS reclamos (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    cliente_id INT NOT NULL,
+                    descripcion TEXT NOT NULL,
+                    estado VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE',
+                    fecha VARCHAR(40) NOT NULL,
+                    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+                )
+            """);
+
+            st.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS movimientos_inventario (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    producto_id INT NOT NULL,
+                    tipo VARCHAR(20) NOT NULL,
+                    cantidad INT NOT NULL,
+                    motivo VARCHAR(255),
+                    fecha VARCHAR(40) NOT NULL,
+                    usuario_id INT NOT NULL,
+                    FOREIGN KEY (producto_id) REFERENCES productos(id),
+                    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+                )
+            """);
         }
     }
 
