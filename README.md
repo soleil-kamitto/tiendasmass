@@ -1,8 +1,12 @@
- # Sistema de Inventario y Ventas — Tiendas Mass (SJL)
+# Sistema de Inventario y Ventas — Tiendas Mass (SJL)
 
 Implementación de la **Alternativa 1** del proyecto: aplicación de escritorio en Java
 (Swing) con persistencia vía JDBC, pensada para instalarse localmente en cada caja y
 seguir operando aunque la red de la tienda falle.
+
+> **[`RUBRICA.md`](RUBRICA.md)** reúne en un solo lugar qué se hizo para cubrir
+> cada taller del curso (Testing, Seguridad, Despliegue, Monitoreo,
+> Mantenimiento) y por qué — el punto de partida para sustentar el proyecto.
 
 ## Decisión técnica: SQLite en lugar de MySQL/Oracle
 
