@@ -1,0 +1,12 @@
+# Artefactos de compilación (regenerados por build.bat / test.bat)
+/out/
+/out-main/
+/out-test/
+/unpack/
+/tiendas-mass.jar
+
+# Base de datos local (se crea automáticamente en el primer arranque)
+/tiendas_mass.db
+
+# Reportes de la suite de tests (se regeneran en cada corrida de test.bat)
+/test-reports/

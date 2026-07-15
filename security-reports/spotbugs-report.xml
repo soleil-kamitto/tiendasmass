@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="4.8.6" sequence="0" timestamp="1784133216455" analysisTimestamp="1784133321571" release="">
+  <Project projectName="">
+    <Jar>out-main</Jar>
+    <AuxClasspathEntry>lib/sqlite-jdbc-3.46.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>lib/flatlaf-3.5.4.jar</AuxClasspathEntry>
+    <Plugin id="com.h3xstream.findsecbugs" enabled="true"/>
+  </Project>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.model.Venta">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="8" end="40" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.model.Venta" name="getDetalles" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="39" end="39" startBytecode="0" endBytecode="28" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Method>
+    <Field classname="com.tiendasmass.inventario.model.Venta" name="detalles" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Field>
+    <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="39" end="39" startBytecode="4" endBytecode="4" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.model.Venta">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="8" end="40" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.model.Venta" name="setDetalles" signature="(Ljava/util/List;)V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="40" end="40" startBytecode="0" endBytecode="29" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Method>
+    <Field classname="com.tiendasmass.inventario.model.Venta" name="detalles" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.model.Venta" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+    </Field>
+    <LocalVariable name="?" register="1" pc="2" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="com.tiendasmass.inventario.model.Venta" start="40" end="40" startBytecode="2" endBytecode="2" sourcefile="Venta.java" sourcepath="com/tiendasmass/inventario/model/Venta.java"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ClientesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" start="14" end="97" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.ClientesPanel" name="clienteDAO" signature="Lcom/tiendasmass/inventario/dao/ClienteDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ClienteDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ClienteDAO" start="13" end="53" sourcefile="ClienteDAO.java" sourcepath="com/tiendasmass/inventario/dao/ClienteDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ClientesPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel$1" start="15" end="16" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ClientesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" start="14" end="97" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ClientesPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" start="20" end="38" startBytecode="0" endBytecode="284" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" start="15" end="15" startBytecode="41" endBytecode="41" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.ClientesPanel" name="modelo" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ClientesPanel" sourcefile="ClientesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ClientesPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="15" end="110" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.InventarioPanel" name="inventarioService" signature="Lcom/tiendasmass/inventario/service/InventarioService;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/service/InventarioService;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.service.InventarioService" start="14" end="46" sourcefile="InventarioService.java" sourcepath="com/tiendasmass/inventario/service/InventarioService.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="15" end="110" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.InventarioPanel" name="productoDAO" signature="Lcom/tiendasmass/inventario/dao/ProductoDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ProductoDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ProductoDAO" start="14" end="115" sourcefile="ProductoDAO.java" sourcepath="com/tiendasmass/inventario/dao/ProductoDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel$1" start="20" end="21" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="15" end="110" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.InventarioPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="29" end="54" startBytecode="0" endBytecode="418" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="19" end="19" startBytecode="68" endBytecode="68" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.InventarioPanel" name="modeloStock" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel$2" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel$2" start="24" end="25" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.InventarioPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="15" end="110" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.InventarioPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="29" end="54" startBytecode="0" endBytecode="418" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" start="23" end="23" startBytecode="116" endBytecode="116" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.InventarioPanel" name="modeloHistorial" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.InventarioPanel" sourcefile="InventarioPanel.java" sourcepath="com/tiendasmass/inventario/ui/InventarioPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="3" rank="19" abbrev="Dm" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="14" end="145" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.LoginFrame" name="lambda$new$1" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="true">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="99" end="99" startBytecode="0" endBytecode="28" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="99" end="99" startBytecode="1" endBytecode="1" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="14" end="145" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.LoginFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="19" end="100" startBytecode="0" endBytecode="883" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Method>
+    <String value="dispose"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="98" end="98" startBytecode="593" endBytecode="593" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="14" end="145" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.LoginFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="19" end="100" startBytecode="0" endBytecode="883" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Method>
+    <String value="getRootPane"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="97" end="97" startBytecode="582" endBytecode="582" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="14" end="145" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.LoginFrame" name="authService" signature="Lcom/tiendasmass/inventario/service/AuthService;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/service/AuthService;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.service.AuthService" start="10" end="26" sourcefile="AuthService.java" sourcepath="com/tiendasmass/inventario/service/AuthService.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame$1" start="25" end="32" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.LoginFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="14" end="145" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.LoginFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="19" end="100" startBytecode="0" endBytecode="883" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.LoginFrame" start="25" end="25" startBytecode="76" endBytecode="76" sourcefile="LoginFrame.java" sourcepath="com/tiendasmass/inventario/ui/LoginFrame.java"/>
+    <LocalVariable name="?" register="1" pc="79" role="LOCAL_VARIABLE_UNKNOWN"/>
+  </BugInstance>
+  <BugInstance type="DM_EXIT" priority="3" rank="19" abbrev="Dm" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.MainFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="13" end="241" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.MainFrame" name="lambda$construirMenuBar$1" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="true">
+      <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="68" end="68" startBytecode="0" endBytecode="28" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="68" end="68" startBytecode="1" endBytecode="1" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.MainFrame">
+      <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="13" end="241" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.MainFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="31" end="59" startBytecode="0" endBytecode="450" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+    </Method>
+    <String value="dispose"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.MainFrame" start="37" end="37" startBytecode="110" endBytecode="110" sourcefile="MainFrame.java" sourcepath="com/tiendasmass/inventario/ui/MainFrame.java"/>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.ProductoDialog">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductoDialog" start="13" end="119" sourcefile="ProductoDialog.java" sourcepath="com/tiendasmass/inventario/ui/ProductoDialog.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ProductoDialog" name="&lt;init&gt;" signature="(Ljava/awt/Frame;Lcom/tiendasmass/inventario/model/Producto;)V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductoDialog" start="24" end="72" startBytecode="0" endBytecode="775" sourcefile="ProductoDialog.java" sourcepath="com/tiendasmass/inventario/ui/ProductoDialog.java"/>
+    </Method>
+    <String value="dispose"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ProductoDialog" start="60" end="60" startBytecode="394" endBytecode="394" sourcefile="ProductoDialog.java" sourcepath="com/tiendasmass/inventario/ui/ProductoDialog.java"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ProductoDialog" start="61" end="61" startBytecode="405" endBytecode="405" sourcefile="ProductoDialog.java" sourcepath="com/tiendasmass/inventario/ui/ProductoDialog.java" role="SOURCE_LINE_ANOTHER_INSTANCE"/>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.ProductosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="13" end="164" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ProductosPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="21" end="48" startBytecode="0" endBytecode="324" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Method>
+    <String value="equals"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="25" end="25" startBytecode="60" endBytecode="60" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ProductosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="13" end="164" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.ProductosPanel" name="productoDAO" signature="Lcom/tiendasmass/inventario/dao/ProductoDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ProductoDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ProductoDAO" start="14" end="115" sourcefile="ProductoDAO.java" sourcepath="com/tiendasmass/inventario/dao/ProductoDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ProductosPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel$1" start="27" end="30" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ProductosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="13" end="164" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ProductosPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="21" end="48" startBytecode="0" endBytecode="324" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" start="27" end="27" startBytecode="78" endBytecode="78" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.ProductosPanel" name="modelo" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ProductosPanel" sourcefile="ProductosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ProductosPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ReclamosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" start="17" end="107" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.ReclamosPanel" name="clienteDAO" signature="Lcom/tiendasmass/inventario/dao/ClienteDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ClienteDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ClienteDAO" start="13" end="53" sourcefile="ClienteDAO.java" sourcepath="com/tiendasmass/inventario/dao/ClienteDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ReclamosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" start="17" end="107" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.ReclamosPanel" name="reclamoDAO" signature="Lcom/tiendasmass/inventario/dao/ReclamoDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ReclamoDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ReclamoDAO" start="14" end="68" sourcefile="ReclamoDAO.java" sourcepath="com/tiendasmass/inventario/dao/ReclamoDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ReclamosPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel$1" start="23" end="24" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ReclamosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" start="17" end="107" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReclamosPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" start="28" end="46" startBytecode="0" endBytecode="309" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" start="22" end="22" startBytecode="62" endBytecode="62" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.ReclamosPanel" name="modelo" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReclamosPanel" sourcefile="ReclamosPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReclamosPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR" priority="3" rank="20" abbrev="MC" category="MALICIOUS_CODE">
+    <Class classname="com.tiendasmass.inventario.ui.ReponerStockDialog">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="16" end="98" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReponerStockDialog" name="&lt;init&gt;" signature="(Ljava/awt/Frame;)V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="21" end="61" startBytecode="0" endBytecode="428" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    </Method>
+    <String value="dispose"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="50" end="50" startBytecode="211" endBytecode="211" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="51" end="51" startBytecode="222" endBytecode="222" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java" role="SOURCE_LINE_ANOTHER_INSTANCE"/>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ReponerStockDialog$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog$1" start="27" end="35" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ReponerStockDialog">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="16" end="98" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReponerStockDialog" name="&lt;init&gt;" signature="(Ljava/awt/Frame;)V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="21" end="61" startBytecode="0" endBytecode="428" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReponerStockDialog" start="27" end="27" startBytecode="96" endBytecode="96" sourcefile="ReponerStockDialog.java" sourcepath="com/tiendasmass/inventario/ui/ReponerStockDialog.java"/>
+  </BugInstance>
+  <BugInstance type="CT_CONSTRUCTOR_THROW" priority="2" rank="16" abbrev="CT" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="19" end="136" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReportesPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="35" end="62" startBytecode="0" endBytecode="474" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="61" end="61" startBytecode="339" endBytecode="339" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="61" end="61" startBytecode="339" endBytecode="339" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+  </BugInstance>
+  <BugInstance type="REC_CATCH_EXCEPTION" priority="3" rank="20" abbrev="REC" category="STYLE">
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="19" end="136" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReportesPanel" name="generarReporte" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="105" end="131" startBytecode="0" endBytecode="478" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="107" end="107" startBytecode="43" endBytecode="43" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="19" end="136" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.ReportesPanel" name="ventaDAO" signature="Lcom/tiendasmass/inventario/dao/VentaDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/VentaDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.VentaDAO" start="16" end="101" sourcefile="VentaDAO.java" sourcepath="com/tiendasmass/inventario/dao/VentaDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel$1" start="26" end="27" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="19" end="136" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReportesPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="35" end="62" startBytecode="0" endBytecode="474" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="25" end="25" startBytecode="91" endBytecode="91" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.ReportesPanel" name="modeloVentas" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel$2" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel$2" start="30" end="31" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.ReportesPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="19" end="136" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.ReportesPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="35" end="62" startBytecode="0" endBytecode="474" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" start="29" end="29" startBytecode="123" endBytecode="123" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.ReportesPanel" name="modeloRotacion" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.ReportesPanel" sourcefile="ReportesPanel.java" sourcepath="com/tiendasmass/inventario/ui/ReportesPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="DE_MIGHT_IGNORE" priority="2" rank="16" abbrev="DE" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.Theme">
+      <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="13" end="149" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.Theme" name="aplicarLookAndFeel" signature="()V" isStatic="true">
+      <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="46" end="81" startBytecode="0" endBytecode="461" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+    </Method>
+    <Class classname="java.lang.Exception" role="CLASS_EXCEPTION">
+      <SourceLine classname="java.lang.Exception" start="55" end="124" sourcefile="Exception.java" sourcepath="java/lang/Exception.java"/>
+    </Class>
+    <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="79" end="79" startBytecode="297" endBytecode="297" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+    <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="79" end="79" startBytecode="297" endBytecode="297" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+  </BugInstance>
+  <BugInstance type="REC_CATCH_EXCEPTION" priority="3" rank="20" abbrev="REC" category="STYLE">
+    <Class classname="com.tiendasmass.inventario.ui.Theme">
+      <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="13" end="149" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.Theme" name="aplicarLookAndFeel" signature="()V" isStatic="true">
+      <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="46" end="81" startBytecode="0" endBytecode="461" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.Theme" start="79" end="79" startBytecode="297" endBytecode="297" sourcefile="Theme.java" sourcepath="com/tiendasmass/inventario/ui/Theme.java"/>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.UsuariosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" start="17" end="146" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.UsuariosPanel" name="usuarioDAO" signature="Lcom/tiendasmass/inventario/dao/UsuarioDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/UsuarioDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.UsuarioDAO" start="15" end="95" sourcefile="UsuarioDAO.java" sourcepath="com/tiendasmass/inventario/dao/UsuarioDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.UsuariosPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel$1" start="19" end="20" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.UsuariosPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" start="17" end="146" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.UsuariosPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" start="24" end="45" startBytecode="0" endBytecode="331" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" start="18" end="18" startBytecode="51" endBytecode="51" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.UsuariosPanel" name="modelo" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.UsuariosPanel" sourcefile="UsuariosPanel.java" sourcepath="com/tiendasmass/inventario/ui/UsuariosPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="carrito" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/model/DetalleVenta;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.model.DetalleVenta" start="13" end="43" sourcefile="DetalleVenta.java" sourcepath="com/tiendasmass/inventario/model/DetalleVenta.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="clienteDAO" signature="Lcom/tiendasmass/inventario/dao/ClienteDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ClienteDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ClienteDAO" start="13" end="53" sourcefile="ClienteDAO.java" sourcepath="com/tiendasmass/inventario/dao/ClienteDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="productoDAO" signature="Lcom/tiendasmass/inventario/dao/ProductoDAO;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/dao/ProductoDAO;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.dao.ProductoDAO" start="14" end="115" sourcefile="ProductoDAO.java" sourcepath="com/tiendasmass/inventario/dao/ProductoDAO.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="productosEncontrados" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/model/Producto;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.model.Producto" start="14" end="50" sourcefile="Producto.java" sourcepath="com/tiendasmass/inventario/model/Producto.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SE_BAD_FIELD" priority="3" rank="19" abbrev="Se" category="BAD_PRACTICE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="ventaService" signature="Lcom/tiendasmass/inventario/service/VentaService;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+    <Type descriptor="Lcom/tiendasmass/inventario/service/VentaService;" role="TYPE_FOUND">
+      <SourceLine classname="com.tiendasmass.inventario.service.VentaService" start="19" end="76" sourcefile="VentaService.java" sourcepath="com/tiendasmass/inventario/service/VentaService.java"/>
+    </Type>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel$1" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel$1" start="30" end="31" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.VentasPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="46" end="59" startBytecode="0" endBytecode="415" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="29" end="29" startBytecode="90" endBytecode="90" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="modeloResultados" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="3" rank="20" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel$2" role="CLASS_ANONYMOUS">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel$2" start="37" end="38" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Class classname="com.tiendasmass.inventario.ui.VentasPanel">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="23" end="240" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Class>
+    <Method classname="com.tiendasmass.inventario.ui.VentasPanel" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="46" end="59" startBytecode="0" endBytecode="415" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Method>
+    <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" start="36" end="36" startBytecode="166" endBytecode="166" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    <Field classname="com.tiendasmass.inventario.ui.VentasPanel" name="modeloCarrito" signature="Ljavax/swing/table/DefaultTableModel;" isStatic="false">
+      <SourceLine classname="com.tiendasmass.inventario.ui.VentasPanel" sourcefile="VentasPanel.java" sourcepath="com/tiendasmass/inventario/ui/VentasPanel.java"/>
+    </Field>
+  </BugInstance>
+  <Errors errors="0" missingClasses="6">
+    <MissingClass>accept</MissingClass>
+    <MissingClass>actionPerformed</MissingClass>
+    <MissingClass>makeConcatWithConstants</MissingClass>
+    <MissingClass>run</MissingClass>
+    <MissingClass>stateChanged</MissingClass>
+    <MissingClass>test</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Wed, 15 Jul 2026 11:33:36 -0500" total_classes="51" referenced_classes="491" total_bugs="40" total_size="2343" num_packages="7" java_version="17.0.19" vm_version="17.0.19+10" cpu_seconds="119.75" clock_seconds="18.99" peak_mbytes="294.29" alloc_mbytes="3940.00" gc_seconds="0.24" priority_3="36" priority_2="4">
+    <PackageStats package="com.tiendasmass.inventario" total_bugs="0" total_types="1" total_size="9">
+      <ClassStats class="com.tiendasmass.inventario.App" sourceFile="App.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.dao" total_bugs="0" total_types="6" total_size="347">
+      <ClassStats class="com.tiendasmass.inventario.dao.ClienteDAO" sourceFile="ClienteDAO.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.dao.MovimientoInventarioDAO" sourceFile="MovimientoInventarioDAO.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.dao.ProductoDAO" sourceFile="ProductoDAO.java" interface="false" size="91" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.dao.ReclamoDAO" sourceFile="ReclamoDAO.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.dao.UsuarioDAO" sourceFile="UsuarioDAO.java" interface="false" size="73" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.dao.VentaDAO" sourceFile="VentaDAO.java" interface="false" size="65" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.db" total_bugs="0" total_types="1" total_size="76">
+      <ClassStats class="com.tiendasmass.inventario.db.Database" sourceFile="Database.java" interface="false" size="76" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.model" total_bugs="2" total_types="9" total_size="313" priority_2="2">
+      <ClassStats class="com.tiendasmass.inventario.model.Cliente" sourceFile="Cliente.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.DetalleVenta" sourceFile="DetalleVenta.java" interface="false" size="43" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.MovimientoInventario" sourceFile="MovimientoInventario.java" interface="false" size="43" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.Producto" sourceFile="Producto.java" interface="false" size="51" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.Reclamo" sourceFile="Reclamo.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.Rol" sourceFile="Rol.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.TipoMovimiento" sourceFile="TipoMovimiento.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.Usuario" sourceFile="Usuario.java" interface="false" size="48" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.model.Venta" sourceFile="Venta.java" interface="false" size="44" bugs="2" priority_2="2"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.service" total_bugs="0" total_types="3" total_size="94">
+      <ClassStats class="com.tiendasmass.inventario.service.AuthService" sourceFile="AuthService.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.service.InventarioService" sourceFile="InventarioService.java" interface="false" size="30" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.service.VentaService" sourceFile="VentaService.java" interface="false" size="49" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.ui" total_bugs="38" total_types="29" total_size="1464" priority_3="36" priority_2="2">
+      <ClassStats class="com.tiendasmass.inventario.ui.ClientesPanel" sourceFile="ClientesPanel.java" interface="false" size="70" bugs="2" priority_3="2"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ClientesPanel$1" sourceFile="ClientesPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.EncabezadoTablaRenderer" sourceFile="EncabezadoTablaRenderer.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.EstadoStockRenderer" sourceFile="EstadoStockRenderer.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.FilaAlternaRenderer" sourceFile="FilaAlternaRenderer.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.InventarioPanel" sourceFile="InventarioPanel.java" interface="false" size="78" bugs="4" priority_3="4"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.InventarioPanel$1" sourceFile="InventarioPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.InventarioPanel$2" sourceFile="InventarioPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.LoginFrame" sourceFile="LoginFrame.java" interface="false" size="103" bugs="5" priority_3="5"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.LoginFrame$1" sourceFile="LoginFrame.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.MainFrame" sourceFile="MainFrame.java" interface="false" size="189" bugs="2" priority_3="2"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ProductoDialog" sourceFile="ProductoDialog.java" interface="false" size="93" bugs="1" priority_3="1"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ProductosPanel" sourceFile="ProductosPanel.java" interface="false" size="126" bugs="3" priority_3="3"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ProductosPanel$1" sourceFile="ProductosPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReclamosPanel" sourceFile="ReclamosPanel.java" interface="false" size="78" bugs="3" priority_3="3"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReclamosPanel$1" sourceFile="ReclamosPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.Refrescable" sourceFile="Refrescable.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReponerStockDialog" sourceFile="ReponerStockDialog.java" interface="false" size="65" bugs="2" priority_3="2"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReponerStockDialog$1" sourceFile="ReponerStockDialog.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReportesPanel" sourceFile="ReportesPanel.java" interface="false" size="99" bugs="5" priority_3="4" priority_2="1"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReportesPanel$1" sourceFile="ReportesPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.ReportesPanel$2" sourceFile="ReportesPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.TarjetaRedondeada" sourceFile="TarjetaRedondeada.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.Theme" sourceFile="Theme.java" interface="false" size="134" bugs="2" priority_3="1" priority_2="1"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.UsuariosPanel" sourceFile="UsuariosPanel.java" interface="false" size="106" bugs="2" priority_3="2"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.UsuariosPanel$1" sourceFile="UsuariosPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.VentasPanel" sourceFile="VentasPanel.java" interface="false" size="179" bugs="7" priority_3="7"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.VentasPanel$1" sourceFile="VentasPanel.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.ui.VentasPanel$2" sourceFile="VentasPanel.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.tiendasmass.inventario.util" total_bugs="0" total_types="2" total_size="40">
+      <ClassStats class="com.tiendasmass.inventario.util.PasswordUtil" sourceFile="PasswordUtil.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="com.tiendasmass.inventario.util.Session" sourceFile="Session.java" interface="false" size="15" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="2145" invocations="2141" avgMicrosecondsPerInvocation="1001" maxMicrosecondsPerInvocation="114866" standardDeviationMicrosecondsPerInvocation="3156"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="1147" invocations="491" avgMicrosecondsPerInvocation="2336" maxMicrosecondsPerInvocation="69478" standardDeviationMicrosecondsPerInvocation="5456"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="1051" invocations="491" avgMicrosecondsPerInvocation="2142" maxMicrosecondsPerInvocation="35715" standardDeviationMicrosecondsPerInvocation="4230"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="914" invocations="2148" avgMicrosecondsPerInvocation="425" maxMicrosecondsPerInvocation="21497" standardDeviationMicrosecondsPerInvocation="587"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="671" invocations="1281" avgMicrosecondsPerInvocation="524" maxMicrosecondsPerInvocation="23172" standardDeviationMicrosecondsPerInvocation="1087"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="487" invocations="370" avgMicrosecondsPerInvocation="1317" maxMicrosecondsPerInvocation="71426" standardDeviationMicrosecondsPerInvocation="5393"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="483" invocations="351" avgMicrosecondsPerInvocation="1378" maxMicrosecondsPerInvocation="119695" standardDeviationMicrosecondsPerInvocation="6712"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="443" invocations="326" avgMicrosecondsPerInvocation="1359" maxMicrosecondsPerInvocation="21437" standardDeviationMicrosecondsPerInvocation="2707"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.taintanalysis.TaintDataflowEngine" totalMilliseconds="410" invocations="326" avgMicrosecondsPerInvocation="1260" maxMicrosecondsPerInvocation="44276" standardDeviationMicrosecondsPerInvocation="3203"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="362" invocations="623" avgMicrosecondsPerInvocation="581" maxMicrosecondsPerInvocation="87649" standardDeviationMicrosecondsPerInvocation="3576"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="356" invocations="491" avgMicrosecondsPerInvocation="726" maxMicrosecondsPerInvocation="34667" standardDeviationMicrosecondsPerInvocation="2049"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="355" invocations="326" avgMicrosecondsPerInvocation="1091" maxMicrosecondsPerInvocation="21180" standardDeviationMicrosecondsPerInvocation="2075"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="295" invocations="326" avgMicrosecondsPerInvocation="907" maxMicrosecondsPerInvocation="19459" standardDeviationMicrosecondsPerInvocation="1750"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="292" invocations="327" avgMicrosecondsPerInvocation="893" maxMicrosecondsPerInvocation="65004" standardDeviationMicrosecondsPerInvocation="3703"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="228" invocations="491" avgMicrosecondsPerInvocation="464" maxMicrosecondsPerInvocation="26934" standardDeviationMicrosecondsPerInvocation="2733"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="226" invocations="2082" avgMicrosecondsPerInvocation="108" maxMicrosecondsPerInvocation="31378" standardDeviationMicrosecondsPerInvocation="713"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="220" invocations="491" avgMicrosecondsPerInvocation="448" maxMicrosecondsPerInvocation="15037" standardDeviationMicrosecondsPerInvocation="1164"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="218" invocations="214" avgMicrosecondsPerInvocation="1021" maxMicrosecondsPerInvocation="22345" standardDeviationMicrosecondsPerInvocation="2140"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="217" invocations="491" avgMicrosecondsPerInvocation="442" maxMicrosecondsPerInvocation="111132" standardDeviationMicrosecondsPerInvocation="5019"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="211" invocations="491" avgMicrosecondsPerInvocation="430" maxMicrosecondsPerInvocation="9397" standardDeviationMicrosecondsPerInvocation="854"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="210" invocations="491" avgMicrosecondsPerInvocation="429" maxMicrosecondsPerInvocation="45368" standardDeviationMicrosecondsPerInvocation="2190"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="191" invocations="491" avgMicrosecondsPerInvocation="389" maxMicrosecondsPerInvocation="4757" standardDeviationMicrosecondsPerInvocation="617"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="171" invocations="327" avgMicrosecondsPerInvocation="524" maxMicrosecondsPerInvocation="80930" standardDeviationMicrosecondsPerInvocation="4489"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="161" invocations="491" avgMicrosecondsPerInvocation="329" maxMicrosecondsPerInvocation="13079" standardDeviationMicrosecondsPerInvocation="937"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="141" invocations="491" avgMicrosecondsPerInvocation="288" maxMicrosecondsPerInvocation="7765" standardDeviationMicrosecondsPerInvocation="640"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ConstructorThrow" totalMilliseconds="127" invocations="51" avgMicrosecondsPerInvocation="2500" maxMicrosecondsPerInvocation="16631" standardDeviationMicrosecondsPerInvocation="3236"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="112" invocations="51" avgMicrosecondsPerInvocation="2196" maxMicrosecondsPerInvocation="72240" standardDeviationMicrosecondsPerInvocation="10047"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.StreamResourceTracker" totalMilliseconds="90" invocations="40" avgMicrosecondsPerInvocation="2254" maxMicrosecondsPerInvocation="12345" standardDeviationMicrosecondsPerInvocation="3645"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="86" invocations="326" avgMicrosecondsPerInvocation="264" maxMicrosecondsPerInvocation="7835" standardDeviationMicrosecondsPerInvocation="681"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.obl.ObligationAnalysis" totalMilliseconds="78" invocations="47" avgMicrosecondsPerInvocation="1667" maxMicrosecondsPerInvocation="21993" standardDeviationMicrosecondsPerInvocation="3289"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="67" invocations="51" avgMicrosecondsPerInvocation="1333" maxMicrosecondsPerInvocation="12124" standardDeviationMicrosecondsPerInvocation="1901"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="66" invocations="4383" avgMicrosecondsPerInvocation="15" maxMicrosecondsPerInvocation="5847" standardDeviationMicrosecondsPerInvocation="160"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteSuppressedWarnings" totalMilliseconds="62" invocations="491" avgMicrosecondsPerInvocation="126" maxMicrosecondsPerInvocation="2458" standardDeviationMicrosecondsPerInvocation="192"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="60" invocations="51" avgMicrosecondsPerInvocation="1181" maxMicrosecondsPerInvocation="6021" standardDeviationMicrosecondsPerInvocation="1062"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindDeadLocalStores" totalMilliseconds="58" invocations="51" avgMicrosecondsPerInvocation="1156" maxMicrosecondsPerInvocation="18478" standardDeviationMicrosecondsPerInvocation="2672"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="57" invocations="286" avgMicrosecondsPerInvocation="202" maxMicrosecondsPerInvocation="6855" standardDeviationMicrosecondsPerInvocation="492"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.password.ConstantPasswordDetector" totalMilliseconds="56" invocations="51" avgMicrosecondsPerInvocation="1111" maxMicrosecondsPerInvocation="11875" standardDeviationMicrosecondsPerInvocation="1915"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="56" invocations="51" avgMicrosecondsPerInvocation="1103" maxMicrosecondsPerInvocation="20754" standardDeviationMicrosecondsPerInvocation="2868"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="55" invocations="51" avgMicrosecondsPerInvocation="1097" maxMicrosecondsPerInvocation="5498" standardDeviationMicrosecondsPerInvocation="1357"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="55" invocations="51" avgMicrosecondsPerInvocation="1095" maxMicrosecondsPerInvocation="16547" standardDeviationMicrosecondsPerInvocation="2344"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

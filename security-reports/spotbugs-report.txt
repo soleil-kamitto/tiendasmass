@@ -1,0 +1,40 @@
+M V EI_EXPOSE_REP2 EI2: com.tiendasmass.inventario.model.Venta.setDetalles(List) may expose internal representation by storing an externally mutable object into Venta.detalles  At Venta.java:[line 40]
+M V EI_EXPOSE_REP EI: com.tiendasmass.inventario.model.Venta.getDetalles() may expose internal representation by returning Venta.detalles  At Venta.java:[line 39]
+M B DE_MIGHT_IGNORE DE: com.tiendasmass.inventario.ui.Theme.aplicarLookAndFeel() might ignore java.lang.Exception  At Theme.java:[line 79]
+L D REC_CATCH_EXCEPTION REC: Exception is caught when Exception is not thrown in com.tiendasmass.inventario.ui.Theme.aplicarLookAndFeel()  At Theme.java:[line 79]
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method dispose is called from constructor new com.tiendasmass.inventario.ui.ProductoDialog(Frame, Producto).  At ProductoDialog.java:[line 60]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.UsuariosPanel defines non-transient non-serializable instance field usuarioDAO  In UsuariosPanel.java
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method dispose is called from constructor new com.tiendasmass.inventario.ui.ReponerStockDialog(Frame).  At ReponerStockDialog.java:[line 50]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.VentasPanel defines non-transient non-serializable instance field productoDAO  In VentasPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.VentasPanel defines non-transient non-serializable instance field clienteDAO  In VentasPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.VentasPanel defines non-transient non-serializable instance field ventaService  In VentasPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.VentasPanel defines non-transient non-serializable instance field carrito  In VentasPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.VentasPanel defines non-transient non-serializable instance field productosEncontrados  In VentasPanel.java
+L B DM_EXIT Dm: com.tiendasmass.inventario.ui.LoginFrame.lambda$new$1(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine  At LoginFrame.java:[line 99]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.LoginFrame defines non-transient non-serializable instance field authService  In LoginFrame.java
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method getRootPane is called from constructor new com.tiendasmass.inventario.ui.LoginFrame().  At LoginFrame.java:[line 97]
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method dispose is called from constructor new com.tiendasmass.inventario.ui.LoginFrame().  At LoginFrame.java:[line 98]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.InventarioPanel defines non-transient non-serializable instance field productoDAO  In InventarioPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.InventarioPanel defines non-transient non-serializable instance field inventarioService  In InventarioPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.ProductosPanel defines non-transient non-serializable instance field productoDAO  In ProductosPanel.java
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method equals is called from constructor new com.tiendasmass.inventario.ui.ProductosPanel().  At ProductosPanel.java:[line 25]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.ReportesPanel defines non-transient non-serializable instance field ventaDAO  In ReportesPanel.java
+L D REC_CATCH_EXCEPTION REC: Exception is caught when Exception is not thrown in com.tiendasmass.inventario.ui.ReportesPanel.generarReporte()  At ReportesPanel.java:[line 107]
+M B CT_CONSTRUCTOR_THROW CT: Exception thrown in class com.tiendasmass.inventario.ui.ReportesPanel at new com.tiendasmass.inventario.ui.ReportesPanel() will leave the constructor. The object under construction remains partially initialized and may be vulnerable to Finalizer attacks.  At ReportesPanel.java:[line 61]
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.ClientesPanel defines non-transient non-serializable instance field clienteDAO  In ClientesPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.ReclamosPanel defines non-transient non-serializable instance field reclamoDAO  In ReclamosPanel.java
+L B SE_BAD_FIELD Se: Class com.tiendasmass.inventario.ui.ReclamosPanel defines non-transient non-serializable instance field clienteDAO  In ReclamosPanel.java
+L B DM_EXIT Dm: com.tiendasmass.inventario.ui.MainFrame.lambda$construirMenuBar$1(ActionEvent) invokes System.exit(...), which shuts down the entire virtual machine  At MainFrame.java:[line 68]
+L V MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR MC: Overridable method dispose is called from constructor new com.tiendasmass.inventario.ui.MainFrame().  At MainFrame.java:[line 37]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ReportesPanel$2 could be refactored into a named _static_ inner class  At ReportesPanel.java:[line 29]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.VentasPanel$1 could be refactored into a named _static_ inner class  At VentasPanel.java:[line 29]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ClientesPanel$1 could be refactored into a named _static_ inner class  At ClientesPanel.java:[line 15]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.UsuariosPanel$1 could be refactored into a named _static_ inner class  At UsuariosPanel.java:[line 18]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ReponerStockDialog$1 could be refactored into a named _static_ inner class  At ReponerStockDialog.java:[line 27]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.LoginFrame$1 could be refactored into a named _static_ inner class  At LoginFrame.java:[line 25]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.InventarioPanel$2 could be refactored into a named _static_ inner class  At InventarioPanel.java:[line 23]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ReportesPanel$1 could be refactored into a named _static_ inner class  At ReportesPanel.java:[line 25]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ProductosPanel$1 could be refactored into a named _static_ inner class  At ProductosPanel.java:[line 27]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.InventarioPanel$1 could be refactored into a named _static_ inner class  At InventarioPanel.java:[line 19]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.VentasPanel$2 could be refactored into a named _static_ inner class  At VentasPanel.java:[line 36]
+L P SIC_INNER_SHOULD_BE_STATIC_ANON SIC: The class com.tiendasmass.inventario.ui.ReclamosPanel$1 could be refactored into a named _static_ inner class  At ReclamosPanel.java:[line 22]
