@@ -65,6 +65,13 @@ Ver [`MONITORING.md`](MONITORING.md): logging estructurado con SLF4J + Logback
 (`logs/health.log`, ver `util.HealthCheck`), instrumentación de rendimiento en la
 transacción de venta, y el plan completo con umbrales y qué revisar ante cada señal.
 
+## Mantenimiento (Taller de Mantenimiento)
+
+Ver [`MAINTENANCE.md`](MAINTENANCE.md): backups automáticos (`scripts/backup.bat`,
+SQLite o MySQL según corresponda), restauración con copia de seguridad previa
+(`scripts/restore.bat`), y una tarea programada diaria (`scripts/instalar-tarea-backup.bat`,
+el equivalente en Windows a un cron job) que corre el backup todos los días a las 23:00.
+
 ## Pruebas automatizadas (Taller de Testing)
 
 ```bat

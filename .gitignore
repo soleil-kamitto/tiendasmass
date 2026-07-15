@@ -15,3 +15,6 @@
 
 # Logs de la aplicación (Taller de Monitoreo, ver MONITORING.md) - se generan en runtime
 /logs/
+
+# Backups locales (Taller de Mantenimiento, ver MAINTENANCE.md) - se generan en runtime
+/backups/
