@@ -1,4 +1,4 @@
-# Sistema de Inventario y Ventas — Tiendas Mass (SJL)
+ # Sistema de Inventario y Ventas — Tiendas Mass (SJL)
 
 Implementación de la **Alternativa 1** del proyecto: aplicación de escritorio en Java
 (Swing) con persistencia vía JDBC, pensada para instalarse localmente en cada caja y
@@ -57,6 +57,13 @@ Ver [`DEPLOYMENT.md`](DEPLOYMENT.md): build con Maven, configuración de un serv
 MySQL real (`docker-compose.yml` + `run-server.bat`) como alternativa a SQLite local
 sin cambiar código (solo variables de entorno `DB_URL`/`DB_USER`/`DB_PASSWORD`), y
 las observaciones levantadas durante el despliegue (y cómo se resolvieron).
+
+## Monitoreo (Taller de Monitoreo)
+
+Ver [`MONITORING.md`](MONITORING.md): logging estructurado con SLF4J + Logback
+(`logs/tiendas-mass.log`), chequeo de salud periódico de BD y memoria JVM
+(`logs/health.log`, ver `util.HealthCheck`), instrumentación de rendimiento en la
+transacción de venta, y el plan completo con umbrales y qué revisar ante cada señal.
 
 ## Pruebas automatizadas (Taller de Testing)
 

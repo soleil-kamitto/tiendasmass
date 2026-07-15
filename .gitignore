@@ -12,3 +12,6 @@
 
 # Reportes de la suite de tests (se regeneran en cada corrida de test.bat / mvnw test)
 /test-reports/
+
+# Logs de la aplicación (Taller de Monitoreo, ver MONITORING.md) - se generan en runtime
+/logs/

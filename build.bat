@@ -20,9 +20,11 @@ cd /d "%~dp0"
 if exist out rmdir /s /q out
 mkdir out
 
+set CP=lib\sqlite-jdbc-3.46.1.3.jar;lib\flatlaf-3.5.4.jar;lib\slf4j-api-2.0.16.jar;lib\logback-classic-1.5.8.jar;lib\logback-core-1.5.8.jar
+
 echo Compilando fuentes...
 dir /s /b src\main\java\*.java > sources.txt
-%JAVAC_EXE% -encoding UTF-8 -cp "lib\sqlite-jdbc-3.46.1.3.jar;lib\flatlaf-3.5.4.jar" -d out @sources.txt
+%JAVAC_EXE% -encoding UTF-8 -cp "%CP%" -d out @sources.txt
 if errorlevel 1 (
     echo La compilacion fallo.
     del sources.txt
@@ -31,16 +33,26 @@ if errorlevel 1 (
 )
 del sources.txt
 
-echo Empaquetando dependencias (SQLite JDBC y FlatLaf) dentro de out...
+echo Empaquetando dependencias (SQLite JDBC, FlatLaf, SLF4J/Logback) dentro de out...
+REM Nota: este build no incluye mysql-connector-j (servidor MySQL del Taller de
+REM Despliegue) porque el jar resultante compartiria META-INF/services/java.sql.Driver
+REM entre dos drivers JDBC y uno pisaria al otro sin un merge como el que hace
+REM maven-shade-plugin (ver DEPLOYMENT.md). Para desplegar contra MySQL usa
+REM "mvnw.cmd clean package" en vez de build.bat.
 if exist unpack rmdir /s /q unpack
 mkdir unpack
 pushd unpack
 %JAR_EXE% xf "..\lib\sqlite-jdbc-3.46.1.3.jar"
 %JAR_EXE% xf "..\lib\flatlaf-3.5.4.jar"
+%JAR_EXE% xf "..\lib\slf4j-api-2.0.16.jar"
+%JAR_EXE% xf "..\lib\logback-classic-1.5.8.jar"
+%JAR_EXE% xf "..\lib\logback-core-1.5.8.jar"
 popd
 xcopy /e /i /y unpack\org out\org >nul
 xcopy /e /i /y unpack\com out\com >nul
+xcopy /e /i /y unpack\ch out\ch >nul
 xcopy /e /i /y unpack\META-INF out\META-INF >nul
+copy /y src\main\resources\logback.xml out\logback.xml >nul
 
 echo Manifest-Version: 1.0> out\manifest.txt
 echo Main-Class: com.tiendasmass.inventario.App>> out\manifest.txt

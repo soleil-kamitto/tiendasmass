@@ -6,6 +6,8 @@ import com.tiendasmass.inventario.db.Database;
 import com.tiendasmass.inventario.model.DetalleVenta;
 import com.tiendasmass.inventario.model.TipoMovimiento;
 import com.tiendasmass.inventario.model.Venta;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -18,10 +20,13 @@ import java.sql.SQLException;
  */
 public class VentaService {
 
+    private static final Logger log = LoggerFactory.getLogger(VentaService.class);
+
     private final VentaDAO ventaDAO = new VentaDAO();
     private final MovimientoInventarioDAO movimientoDAO = new MovimientoInventarioDAO();
 
     public int registrarVenta(Venta venta) {
+        long inicio = System.nanoTime();
         try (Connection conn = Database.getConnection()) {
             conn.setAutoCommit(false);
             try {
@@ -42,12 +47,18 @@ public class VentaService {
                 }
 
                 conn.commit();
+                long ms = (System.nanoTime() - inicio) / 1_000_000;
+                log.info("Venta #{} registrada: usuario={}, {} item(s), total={} ({} ms)",
+                        ventaId, venta.getUsuarioId(), venta.getDetalles().size(), total, ms);
                 return ventaId;
             } catch (SQLException | IllegalStateException e) {
                 conn.rollback();
+                log.warn("Venta revertida (rollback): usuario={}, motivo: {}",
+                        venta.getUsuarioId(), e.getMessage());
                 throw new RuntimeException(e.getMessage(), e);
             }
         } catch (SQLException e) {
+            log.error("Error de conexión al registrar la venta (usuario={})", venta.getUsuarioId(), e);
             throw new RuntimeException("Error de conexión al registrar la venta", e);
         }
     }

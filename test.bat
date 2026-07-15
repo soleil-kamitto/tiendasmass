@@ -19,7 +19,7 @@ cd /d "%~dp0"
 if exist out-test rmdir /s /q out-test
 mkdir out-test
 
-set CP=lib\sqlite-jdbc-3.46.1.3.jar;lib\flatlaf-3.5.4.jar;lib\junit-platform-console-standalone-1.10.3.jar
+set CP=lib\sqlite-jdbc-3.46.1.3.jar;lib\flatlaf-3.5.4.jar;lib\slf4j-api-2.0.16.jar;lib\logback-classic-1.5.8.jar;lib\logback-core-1.5.8.jar;lib\junit-platform-console-standalone-1.10.3.jar
 
 echo Compilando fuentes principales y de test...
 dir /s /b src\main\java\*.java src\test\java\*.java > sources.txt
@@ -31,11 +31,12 @@ if errorlevel 1 (
     exit /b 1
 )
 del sources.txt
+copy /y src\main\resources\logback.xml out-test\logback.xml >nul
 
 echo.
 echo Ejecutando pruebas...
 %JAVA_EXE% -jar lib\junit-platform-console-standalone-1.10.3.jar execute ^
-    -cp out-test;lib\sqlite-jdbc-3.46.1.3.jar;lib\flatlaf-3.5.4.jar ^
+    -cp "%CP%;out-test" ^
     --scan-class-path out-test ^
     --reports-dir=test-reports ^
     --details=tree

@@ -1,6 +1,8 @@
 package com.tiendasmass.inventario.db;
 
 import com.tiendasmass.inventario.util.PasswordUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,6 +21,8 @@ import java.sql.Statement;
  * cliente-servidor.</p>
  */
 public final class Database {
+
+    private static final Logger log = LoggerFactory.getLogger(Database.class);
 
     private static final String DEFAULT_DB_URL = "jdbc:sqlite:tiendas_mass.db";
 
@@ -52,18 +56,24 @@ public final class Database {
     }
 
     public static Connection getConnection() throws SQLException {
-        Connection conn = (dbUser != null)
-                ? DriverManager.getConnection(dbUrl, dbUser, dbPassword)
-                : DriverManager.getConnection(dbUrl);
-        if (!esMySql()) {
-            try (Statement st = conn.createStatement()) {
-                st.execute("PRAGMA foreign_keys = ON"); // no soportado por MySQL
+        try {
+            Connection conn = (dbUser != null)
+                    ? DriverManager.getConnection(dbUrl, dbUser, dbPassword)
+                    : DriverManager.getConnection(dbUrl);
+            if (!esMySql()) {
+                try (Statement st = conn.createStatement()) {
+                    st.execute("PRAGMA foreign_keys = ON"); // no soportado por MySQL
+                }
             }
+            return conn;
+        } catch (SQLException e) {
+            log.error("No se pudo conectar a la base de datos ({})", esMySql() ? "MySQL" : "SQLite", e);
+            throw e;
         }
-        return conn;
     }
 
     public static void initSchema() {
+        log.info("Inicializando esquema de base de datos ({})", esMySql() ? "MySQL" : "SQLite");
         try (Connection conn = getConnection()) {
             if (esMySql()) {
                 crearEsquemaMySql(conn);
@@ -71,7 +81,9 @@ public final class Database {
                 crearEsquemaSqlite(conn);
             }
             seedData(conn);
+            log.info("Esquema de base de datos listo");
         } catch (SQLException e) {
+            log.error("No se pudo inicializar la base de datos", e);
             throw new RuntimeException("No se pudo inicializar la base de datos", e);
         }
     }

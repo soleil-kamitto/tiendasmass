@@ -1,0 +1,53 @@
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!-- Log de aplicación: eventos de negocio (login, ventas, reposición, errores). -->
+  <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/tiendas-mass.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/tiendas-mass.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>100MB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!-- Log de salud del sistema (JVM, conexión a BD): ver util.HealthCheck. Separado del log de
+       aplicación para no mezclar eventos de negocio con métricas técnicas periódicas. -->
+  <appender name="HEALTH_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/health.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/health.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>14</maxHistory>
+      <totalSizeCap>50MB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <logger name="com.tiendasmass.inventario.util.HealthCheck" level="INFO" additivity="false">
+    <appender-ref ref="HEALTH_FILE" />
+    <appender-ref ref="CONSOLE" />
+  </logger>
+
+  <!-- Drivers JDBC son muy ruidosos en DEBUG; con WARN alcanza para monitoreo. -->
+  <logger name="org.sqlite" level="WARN" />
+  <logger name="com.mysql" level="WARN" />
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="APP_FILE" />
+  </root>
+
+</configuration>

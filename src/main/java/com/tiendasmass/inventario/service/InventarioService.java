@@ -4,6 +4,8 @@ import com.tiendasmass.inventario.dao.MovimientoInventarioDAO;
 import com.tiendasmass.inventario.db.Database;
 import com.tiendasmass.inventario.model.MovimientoInventario;
 import com.tiendasmass.inventario.model.TipoMovimiento;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,8 @@ import java.util.List;
 
 /** RF13/RF14: reposición de stock e historial de movimientos de inventario. */
 public class InventarioService {
+
+    private static final Logger log = LoggerFactory.getLogger(InventarioService.class);
 
     private final MovimientoInventarioDAO movimientoDAO = new MovimientoInventarioDAO();
 
@@ -30,11 +34,15 @@ public class InventarioService {
                 }
                 movimientoDAO.insertar(conn, productoId, TipoMovimiento.ENTRADA, cantidad, motivo, usuarioId);
                 conn.commit();
+                log.info("Stock repuesto: producto={}, cantidad={}, usuario={}, motivo='{}'",
+                        productoId, cantidad, usuarioId, motivo);
             } catch (SQLException e) {
                 conn.rollback();
+                log.error("Error al reponer stock (producto={}, usuario={})", productoId, usuarioId, e);
                 throw new RuntimeException("Error al reponer stock", e);
             }
         } catch (SQLException e) {
+            log.error("Error de conexión al reponer stock (producto={})", productoId, e);
             throw new RuntimeException("Error de conexión al reponer stock", e);
         }
     }
