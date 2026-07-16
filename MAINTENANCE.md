@@ -3,11 +3,23 @@
 ## 1. Alcance
 
 Mantenimiento operativo de la aplicación ya desplegada (ver `DEPLOYMENT.md` y
-`MONITORING.md`): backups automáticos, restauración ante un problema, y los
-scripts que los soportan. Cubre ambos motores de datos que soporta la app: SQLite
-local (default) y el servidor MySQL de `docker-compose.yml`.
+`MONITORING.md`): backups automáticos, restauración ante un problema, monitoreo
+externo y administración del servidor, y los scripts que los soportan. Cubre
+ambos motores de datos que soporta la app: SQLite local (default) y el servidor
+MySQL de `docker-compose.yml`.
 
-## 2. Backups
+## 2. Categorías de scripts
+
+Mapeando contra las 4 categorías de scripts de mantenimiento vistas en clase:
+
+| Categoría | Script | Qué hace |
+|---|---|---|
+| Scripts de Backup | `scripts/backup.bat` | Respalda SQLite o MySQL según corresponda |
+| Scripts de Automatización de Procesos | `scripts/instalar-tarea-backup.bat` | Registra la tarea programada que corre el backup solo, sin intervención humana |
+| Scripts de Monitoreo | `scripts/monitoreo.bat` | Verifica el estado del servidor MySQL, espacio en disco y errores recientes en el log de la app |
+| Scripts de Administración | `scripts/administracion.bat` | Gestiona el recurso del sistema operativo (el contenedor MySQL: iniciar/detener/estado) y su configuración (variables de entorno `DB_URL`/`DB_USER`/`DB_PASSWORD`) |
+
+## 3. Backups
 
 **Script:** `scripts/backup.bat`. Detecta automáticamente qué motor está activo
 (mira la variable de entorno `DB_URL`, la misma que usa la app — ver
@@ -29,7 +41,10 @@ se confirmó con `INSERT INTO` reales para las 6 tablas).
 ### Tarea programada (cron)
 
 Windows no tiene cron; su equivalente es el **Programador de tareas**
-(Task Scheduler), manejado por línea de comandos con `schtasks`.
+(Task Scheduler), manejado por línea de comandos con `schtasks`. Un cron job se
+define con 5 campos (`minuto hora día-mes mes día-semana comando`); nuestro
+backup diario a las 23:00 equivale a la expresión cron `0 23 * * *`, solo que
+implementada con las herramientas de Windows en vez de un crontab de Linux.
 
 - `scripts/instalar-tarea-backup.bat` — crea la tarea `TiendasMassBackupDiario`
   que corre `backup.bat` **todos los días a las 23:00** (requiere permisos de
@@ -40,7 +55,7 @@ Windows no tiene cron; su equivalente es el **Programador de tareas**
 **Estado actual:** la tarea ya está instalada en esta máquina (confirmado con
 `schtasks /query`: próxima ejecución hoy 23:00, estado "Listo").
 
-## 3. Restauración
+## 4. Restauración
 
 **Script:** `scripts/restore.bat [archivo]`.
 
@@ -59,24 +74,63 @@ contra el original (idénticos). En MySQL, corrompí a propósito el stock de un
 producto (lo puse en 777), restauré desde un backup tomado antes con el valor
 real (42), y confirmé en la base que volvió exactamente a 42.
 
-## 4. Observación levantada durante este taller (y cómo se resolvió)
+## 5. Monitoreo externo
 
-Al escribir `restore.bat` con bloques `if/else` anidados (el mismo estilo usado
-en el resto del proyecto), `cmd.exe` fallaba con
-*"El sistema no encuentra la etiqueta por lotes especificada"* al saltar sobre el
-bloque de MySQL para llegar al de SQLite — un problema de parseo de `cmd.exe`
-relacionado con un `goto` que debía saltar por encima de una línea con
-`docker exec -i ... | ...`. Además, la detección de si un archivo era `.sql` vía
-`findstr /e` fallaba siempre (un espacio final invisible que agrega `echo` al
-canalizar su salida rompía el anclaje de fin de línea). Se resolvieron:
-reescribiendo el flujo con `goto`/etiquetas en vez de bloques anidados, **ordenando
-la rama SQLite antes que la de MySQL** en el archivo (evita el salto problemático),
-reemplazando el pipe hacia `docker exec -i` por redirección de entrada (`<`), y
-cambiando la detección de extensión por una comparación de subcadena
-(`%ARCHIVO:~-4%`) en vez de `findstr`. Todo esto se verificó de nuevo después del
-cambio (ver sección 3).
+**Script:** `scripts/monitoreo.bat`. A diferencia de `util.HealthCheck` (que
+corre *dentro* de la app cada 5 minutos, ver `MONITORING.md`), este es un script
+**independiente**: no requiere que la app esté corriendo. Revisa:
 
-## 5. Otras tareas de mantenimiento ya cubiertas en talleres anteriores
+- Si el contenedor `tiendasmass-mysql` está activo (si se usa el servidor).
+- Espacio libre en la unidad de disco donde vive el proyecto (advierte si
+  quedan menos de 2 GB — relevante porque ahí se guardan los backups).
+- Si `logs/tiendas-mass.log` tiene alguna línea `ERROR` reciente.
+
+Deja su propio registro en `logs/monitoreo-externo.log` y también imprime un
+resumen en pantalla. Se puede correr solo o agregarlo a una tarea programada
+igual que el backup.
+
+## 6. Administración
+
+**Script:** `scripts/administracion.bat [estado|iniciar-servidor|detener-servidor|configurar-entorno]`.
+Gestiona el recurso del sistema operativo que necesita esta app (el contenedor
+MySQL) y su configuración (las variables de entorno de conexión):
+
+- `estado` — si el contenedor MySQL está corriendo, versión de Java instalada,
+  y qué `DB_URL`/`DB_USER` están activos en la sesión actual.
+- `iniciar-servidor` / `detener-servidor` — `docker compose up -d` / `down`
+  sobre `docker-compose.yml`, para no tener que recordar el comando.
+- `configurar-entorno` — guarda `DB_URL`/`DB_USER`/`DB_PASSWORD` como variables
+  de entorno **permanentes** del usuario de Windows (`setx`), para no tener que
+  definirlas a mano cada vez que se quiere correr contra el servidor.
+
+**Verificado en esta sesión:** los 4 subcomandos, incluyendo detener y volver a
+levantar el contenedor real, y guardar/limpiar las variables de entorno
+persistentes (se revirtieron después de probar, para no dejar la máquina de
+desarrollo apuntando a MySQL por defecto sin que nadie lo haya pedido).
+
+## 7. Observaciones levantadas durante este taller (y cómo se resolvieron)
+
+- **`restore.bat`:** con bloques `if/else` anidados (el mismo estilo usado en
+  el resto del proyecto), `cmd.exe` fallaba con *"El sistema no encuentra la
+  etiqueta por lotes especificada"* al saltar sobre el bloque de MySQL para
+  llegar al de SQLite — un problema de parseo de `cmd.exe` relacionado con un
+  `goto` que debía saltar por encima de una línea con `docker exec -i ... | ...`.
+  Además, la detección de si un archivo era `.sql` vía `findstr /e` fallaba
+  siempre (un espacio final invisible que agrega `echo` al canalizar su salida
+  rompía el anclaje de fin de línea). Se resolvieron reescribiendo el flujo con
+  `goto`/etiquetas, **ordenando la rama SQLite antes que la de MySQL** (evita el
+  salto problemático), cambiando el pipe por redirección de entrada (`<`), y
+  reemplazando `findstr` por una comparación de subcadena (`%ARCHIVO:~-4%`).
+- **`administracion.bat`:** el mismo tipo de problema apareció otra vez —un
+  `goto` que saltaba por encima de un bloque con
+  `for /f ... in ('docker ps -q -f ... 2^>nul') do ...` rompía la resolución de
+  la etiqueta destino. Como aquí había 4 acciones posibles (cualquiera podía ser
+  la que se pide), no bastaba con reordenar. Se resolvió eliminando `goto`
+  /etiquetas del todo para el despacho de comandos: cada acción es un bloque
+  `if "%~1"=="..." ( ... exit /b 0 )` independiente que se ejecuta en línea, sin
+  necesitar saltar sobre ningún otro bloque.
+
+## 8. Otras tareas de mantenimiento ya cubiertas en talleres anteriores
 
 - **Logs:** rotación y límite de tamaño ya automatizados por Logback
   (`maxHistory`, `totalSizeCap` en `logback.xml`) — no requieren un script aparte,
@@ -85,7 +139,7 @@ cambio (ver sección 3).
   abiertos), para que una actualización de una librería sea un cambio deliberado,
   no automático.
 
-## 6. Qué falta para un mantenimiento a mayor escala (fuera de alcance aquí)
+## 9. Qué falta para un mantenimiento a mayor escala (fuera de alcance aquí)
 
 Igual que se señaló en `DEPLOYMENT.md`/`MONITORING.md`: para varias cajas o un
 servidor MySQL de producción real (no Docker local), lo siguiente sería subir los
@@ -94,7 +148,7 @@ se quiere proteger) y agregar una alerta activa si `backup.log` no registra un
 "OK" en 24 horas — no implementado aquí porque excede el alcance de una sola
 tienda con backups locales.
 
-## 7. Cómo reproducir
+## 10. Cómo reproducir
 
 ```bat
 scripts\backup.bat                              REM backup manual (o esperar la tarea programada de las 23:00)
@@ -102,4 +156,9 @@ scripts\restore.bat                             REM restaura el backup mas recie
 scripts\restore.bat backups\archivo_especifico  REM restaura uno puntual
 scripts\instalar-tarea-backup.bat               REM registra el backup diario en el Programador de tareas
 scripts\desinstalar-tarea-backup.bat            REM lo quita
+scripts\monitoreo.bat                           REM chequeo de salud independiente de la app
+scripts\administracion.bat estado               REM estado del servidor MySQL y de Java
+scripts\administracion.bat iniciar-servidor     REM levanta el servidor MySQL
+scripts\administracion.bat detener-servidor     REM lo detiene
+scripts\administracion.bat configurar-entorno   REM guarda DB_URL/DB_USER/DB_PASSWORD de forma permanente
 ```

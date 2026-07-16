@@ -187,14 +187,17 @@ a un número raro), se restauró desde un backup anterior, y se confirmó que el
 valor volvió exactamente al original. No se probó solo que el script "corriera
 sin error" — se probó que el dato realmente vuelve a estar bien.
 
----
-
-## 8. Si te preguntan directamente "¿hiciste esto vos solo?"
-
-Sé honesto y tranquilo: usaste asistencia de IA para escribir el código, como
-hoy hacen muchos desarrolladores profesionales con herramientas como GitHub
-Copilot o Claude. Lo que importa para la nota (y lo que esta guía te preparó a
-hacer) es que puedas **explicar las decisiones y por qué se hicieron así** — que
-es exactamente el criterio de "autoría" de la rúbrica ("el código fue hecho por
-el estudiante **o lo domina**"). Si sabes responder las preguntas de arriba con
-tus palabras, cumples ese criterio.
+**Si la clase mencionó 4 tipos de scripts de mantenimiento** (Administración,
+Backup, Monitoreo, Automatización de Procesos), acá está cada uno:
+- **Backup** → `scripts/backup.bat`.
+- **Automatización de procesos** → la tarea programada diaria
+  (`instalar-tarea-backup.bat`) — corre sola, sin que nadie la dispare a mano.
+- **Monitoreo** → `scripts/monitoreo.bat`: a diferencia del chequeo de salud que
+  vive dentro de la app (Taller de Monitoreo), este es un script aparte que
+  revisa el servidor MySQL, el espacio en disco, y si hay errores recientes en
+  el log — **sin necesitar que la app esté corriendo**.
+- **Administración** → `scripts/administracion.bat`: prende/apaga el servidor
+  MySQL (`iniciar-servidor`/`detener-servidor`) y guarda la configuración de
+  conexión (`configurar-entorno`) — o sea, gestiona un recurso del sistema
+  (el contenedor) y su configuración, que es literalmente la definición de
+  "script de administración".

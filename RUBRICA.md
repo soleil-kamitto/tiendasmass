@@ -117,8 +117,12 @@ Repositorio: `github.com/soleil-kamitto/tiendasmass`.
   actual antes de sobrescribir (reversible), pide confirmación explícita.
 - **Cron job** (Windows no tiene cron; su equivalente es el Programador de
   tareas): `scripts/instalar-tarea-backup.bat` registra una tarea diaria a las
-  23:00 — **ya instalada** en la máquina de desarrollo, confirmada con
-  `schtasks /query`.
+  23:00 (equivalente a la expresión cron `0 23 * * *`) — **ya instalada** en la
+  máquina de desarrollo, confirmada con `schtasks /query`.
+- **Monitoreo externo** (`scripts/monitoreo.bat`) y **administración**
+  (`scripts/administracion.bat`): scripts independientes de la app — el primero
+  revisa servidor MySQL/disco/errores en el log, el segundo gestiona el
+  contenedor MySQL (iniciar/detener/estado) y la configuración de conexión.
 - Verificado extremo a extremo (no solo que corriera sin error): se corrompió a
   propósito un valor en SQLite y en MySQL, se restauró desde un backup anterior,
   y se confirmó que el valor volvió exactamente al original en ambos casos.
