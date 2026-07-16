@@ -7,6 +7,8 @@ seguir operando aunque la red de la tienda falle.
 > **[`RUBRICA.md`](RUBRICA.md)** reúne en un solo lugar qué se hizo para cubrir
 > cada taller del curso (Testing, Seguridad, Despliegue, Monitoreo,
 > Mantenimiento) y por qué — el punto de partida para sustentar el proyecto.
+> **[`GUIA_SUSTENTACION.md`](GUIA_SUSTENTACION.md)** explica todo en lenguaje
+> simple, con las preguntas típicas y las respuestas en tus palabras.
 
 ## Decisión técnica: SQLite en lugar de MySQL/Oracle
 

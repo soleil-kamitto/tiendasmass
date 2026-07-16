@@ -150,11 +150,13 @@ Repositorio: `github.com/soleil-kamitto/tiendasmass`.
    DAO/Service para separar acceso a datos de lógica de negocio, hashing de
    contraseñas con salt, control de versiones con Git/GitHub, tests
    automatizados, logging estructurado.
-4. **Autoría — pendiente de tu parte:** este es el único criterio que no se
-   puede "completar" con más código. El proyecto se construyó con asistencia de
-   Claude a partir de tus instrucciones; para defenderlo necesitas poder
-   explicar las decisiones clave si te preguntan. Puntos concretos que conviene
-   repasar antes de sustentar:
+4. **Autoría:** este es el único criterio que no se puede "completar" con más
+   código. El proyecto se construyó con asistencia de Claude a partir de tus
+   instrucciones; para defenderlo necesitas poder explicar las decisiones clave
+   si te preguntan. Ver [`GUIA_SUSTENTACION.md`](GUIA_SUSTENTACION.md) — una
+   guía en lenguaje simple, con las preguntas típicas de cada taller y las
+   respuestas en tus palabras. Puntos concretos que conviene repasar antes de
+   sustentar (desarrollados en la guía):
    - Por qué `Session.actual()` devuelve una copia del usuario y no la
      referencia real (`util/Session.java`) — el hallazgo de seguridad más
      importante del proyecto.
