@@ -77,8 +77,9 @@ Ver [`MAINTENANCE.md`](MAINTENANCE.md): backups automáticos (`scripts/backup.ba
 SQLite o MySQL según corresponda), restauración con copia de seguridad previa
 (`scripts/restore.bat`), una tarea programada diaria (`scripts/instalar-tarea-backup.bat`,
 el equivalente en Windows a un cron job) que corre el backup todos los días a las 23:00,
-monitoreo externo (`scripts/monitoreo.bat`) y administración del servidor
-(`scripts/administracion.bat`).
+monitoreo externo (`scripts/monitoreo.bat`), administración del servidor
+(`scripts/administracion.bat`) y un reporte diario de stock
+(`scripts/reporte-stock-diario.bat`, 7:00 am) con las alertas de stock bajo.
 
 ## Pruebas automatizadas (Taller de Testing)
 

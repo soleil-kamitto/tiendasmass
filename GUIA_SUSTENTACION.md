@@ -201,3 +201,10 @@ Backup, Monitoreo, Automatización de Procesos), acá está cada uno:
   conexión (`configurar-entorno`) — o sea, gestiona un recurso del sistema
   (el contenedor) y su configuración, que es literalmente la definición de
   "script de administración".
+
+**Un script extra que no es de infraestructura, es de negocio:**
+`scripts/reporte-stock-diario.bat` genera cada mañana (7:00 am, otra tarea
+programada) un archivo con el stock actual de la tienda y qué productos están
+por debajo del mínimo — para que quien abre la tienda sepa qué reponer sin
+tener que abrir la app. Internamente reutiliza el mismo `ProductoDAO` que usan
+las pantallas de Productos e Inventario, solo que sin interfaz gráfica.

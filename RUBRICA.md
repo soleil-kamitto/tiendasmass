@@ -123,6 +123,10 @@ Repositorio: `github.com/soleil-kamitto/tiendasmass`.
   (`scripts/administracion.bat`): scripts independientes de la app — el primero
   revisa servidor MySQL/disco/errores en el log, el segundo gestiona el
   contenedor MySQL (iniciar/detener/estado) y la configuración de conexión.
+- **Reporte diario de stock** (`scripts/reporte-stock-diario.bat`, con su propia
+  tarea programada a las 7:00 am): un "script relevante" del lado del negocio,
+  no solo de infraestructura — reutiliza `ProductoDAO` para dejar un archivo
+  con las alertas de stock bajo (RF06) cada mañana.
 - Verificado extremo a extremo (no solo que corriera sin error): se corrompió a
   propósito un valor en SQLite y en MySQL, se restauró desde un backup anterior,
   y se confirmó que el valor volvió exactamente al original en ambos casos.

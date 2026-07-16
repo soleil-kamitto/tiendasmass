@@ -9,6 +9,7 @@
 
 # Base de datos local (se crea automáticamente en el primer arranque)
 /tiendas_mass.db
+/tiendas_mass.db.corrupto-*
 
 # Reportes de la suite de tests (se regeneran en cada corrida de test.bat / mvnw test)
 /test-reports/
@@ -18,3 +19,6 @@
 
 # Backups locales (Taller de Mantenimiento, ver MAINTENANCE.md) - se generan en runtime
 /backups/
+
+# Reportes diarios de stock (scripts/reporte-stock-diario.bat) - se generan en runtime
+/reportes/
